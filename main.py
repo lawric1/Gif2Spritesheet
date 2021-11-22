@@ -22,15 +22,15 @@ def create_Spritesheet(file):
 
     spriteSheet.save(file[:-4] + ' spritesheet.png')
 
-def create_GIF(file, frameSize, filename):
+def create_gif(file, frame_size, name):
     with Image.open(file) as im:
-        width, height = frameSize
+        width, height = frame_size
         left, upper, right, lower = 0, 0, width, height
 
-        frameNumber = im.width // width
+        frame_number = im.width // width
         frames = []
 
-        for i in range(frameNumber):
+        for i in range(frame_number):
             frame = im.crop((left, upper, right, lower))
             frames.append(frame)
 
@@ -39,14 +39,12 @@ def create_GIF(file, frameSize, filename):
             right += width
             lower += 0
         
-        frames[0].save(filename + '.gif', format='GIF', 
+        frames[0].save(name + '.gif', format='GIF', 
                         append_images=frames[1:], 
                         save_all=True, 
                         duration=150, 
                         loop=0)
 
-# create_Spritesheet(file)
-# create_GIF('3x spritesheet.png', (112, 112), 'export')
 
 # Todo
     # Get file from sysarg
